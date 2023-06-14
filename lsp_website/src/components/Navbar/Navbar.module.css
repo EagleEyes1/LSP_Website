@@ -1,0 +1,19 @@
+.iconnav {
+    max-width: 70px;
+    max-height: 70px;
+    padding: 13px;
+}
+
+.icontext {
+    color:#edcb04;
+    font-size: 30px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #2c65b5;
+}
+
+.abouttext {
+    color:#edcb04;
+    font-size: 25px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #2c65b5;
+}
