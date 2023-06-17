@@ -11,13 +11,18 @@ import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
 import useInsertDepart from "../../hooks/useInsertDepart";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { NumericFormat } from "react-number-format";
 
 function ContentDepartTable() {
   const [state, setState] = useState({
     nama_jabatan: "",
+    bonus: 0,
+    pph: 0,
   });
 
   const { departData, departLoading, departError } = useGetDepart();
+
+  console.log(departData);
 
   const { deleteDepartLoading, deleteDepartById } = useDeleteDepart();
 
@@ -64,6 +69,8 @@ function ContentDepartTable() {
     insertNewDepart({
       variables: {
         nama_jabatan: newData.nama_jabatan,
+        bonus: newData.bonus,
+        pph: newData.pph,
       },
     });
   };
@@ -91,10 +98,14 @@ function ContentDepartTable() {
     if (state.nama_jabatan) {
       const newData = {
         nama_jabatan: state.nama_jabatan,
+        bonus: state.bonus,
+        pph: state.pph,
       };
       addDepart(newData);
       setState({
         nama_jabatan: "",
+        bonus: 0,
+        pph: 0,
       });
     } else {
       alert("Data Masih Ada Yang Belum Diisi");
@@ -123,6 +134,8 @@ function ContentDepartTable() {
             <tr>
               <th>No</th>
               <th>Jabatan</th>
+              <th>Bonus</th>
+              <th>PPH</th>
               <th style={{ textAlign: "center" }}>Aksi</th>
             </tr>
           </thead>
@@ -131,6 +144,30 @@ function ContentDepartTable() {
               <tr key={item.id_jabatan}>
                 <td>{index + 1}</td>
                 <td>{item.nama_jabatan}</td>
+                <td>
+                  <NumericFormat
+                    style={{
+                      border: "none",
+                      backgroundColor: "transparent",
+                      textAlign: "center",
+                    }}
+                    suffix={"%"}
+                    decimalScale={2}
+                    value={item.bonus * 100}
+                  />
+                </td>
+                <td>
+                  <NumericFormat
+                    style={{
+                      border: "none",
+                      backgroundColor: "transparent",
+                      textAlign: "center",
+                    }}
+                    suffix={"%"}
+                    decimalScale={2}
+                    value={item.pph * 100}
+                  />
+                </td>
                 <td style={{ textAlign: "center" }}>
                   <Button
                     variant="secondary"
@@ -170,6 +207,34 @@ function ContentDepartTable() {
               name="nama_jabatan"
               type="text"
               value={state.nama_jabatan}
+              placeholder="name@example.com"
+            />
+          </FloatingLabel>
+          <FloatingLabel
+            controlId="floatingInputNama"
+            label="Bonus (dalam desimal)"
+            className="mb-3"
+          >
+            <Form.Control
+              onChange={onChange}
+              name="bonus"
+              type="number"
+              step="0.01"
+              value={state.bonus}
+              placeholder="name@example.com"
+            />
+          </FloatingLabel>
+          <FloatingLabel
+            controlId="floatingInputNama"
+            label="PPH (dalam desimal)"
+            className="mb-3"
+          >
+            <Form.Control
+              onChange={onChange}
+              name="pph"
+              type="number"
+              step="0.01"
+              value={state.pph}
               placeholder="name@example.com"
             />
           </FloatingLabel>

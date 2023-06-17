@@ -5,6 +5,8 @@ const GetDepart = gql`
     jabatan {
       id_jabatan
       nama_jabatan
+      bonus
+      pph
     }
   }
 `;

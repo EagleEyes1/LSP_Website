@@ -9,6 +9,8 @@ import useGetDepartById from "../../hooks/useGetDepartById";
 function ModalEditDepart({ id, setShow, show }) {
   const [state, setState] = useState({
     nama_jabatan: "",
+    bonus: 0,
+    pph: 0,
   });
 
   const handleClose = () => {
@@ -25,6 +27,8 @@ function ModalEditDepart({ id, setShow, show }) {
       variables: {
         id_jabatan: id,
         nama_jabatan: state.nama_jabatan,
+        bonus: state.bonus,
+        pph: state.pph,
       },
     });
     handleClose();
@@ -40,6 +44,8 @@ function ModalEditDepart({ id, setShow, show }) {
   useEffect(() => {
     setState({
       nama_jabatan: idDepartData?.jabatan_by_pk?.nama_jabatan,
+      bonus: idDepartData?.jabatan_by_pk?.bonus,
+      pph: idDepartData?.jabatan_by_pk?.pph,
     });
   }, [id, idDepartData]);
 
@@ -56,6 +62,24 @@ function ModalEditDepart({ id, setShow, show }) {
             type="text"
             onChange={onChange}
             value={state.nama_jabatan}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Bonus</Form.Label>
+          <Form.Control
+            name="bonus"
+            type="number"
+            onChange={onChange}
+            value={state.bonus}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>PPH</Form.Label>
+          <Form.Control
+            name="pph"
+            type="number"
+            onChange={onChange}
+            value={state.pph}
           />
         </Form.Group>
       </Modal.Body>

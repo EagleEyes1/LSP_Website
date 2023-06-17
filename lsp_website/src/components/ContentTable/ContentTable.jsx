@@ -184,7 +184,10 @@ function ContentTable() {
                     <FontAwesomeIcon icon={faTrash} />
                     Hapus
                   </Button>{" "}
-                  <Button variant="warning">
+                  <Button
+                    href={`/detailgaji/${item.id_karyawan}`}
+                    variant="warning"
+                  >
                     <FontAwesomeIcon icon={faMoneyBill} />
                     Gaji
                   </Button>

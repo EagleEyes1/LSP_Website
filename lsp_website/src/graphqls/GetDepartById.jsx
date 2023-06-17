@@ -5,6 +5,8 @@ const GetDepartById = gql`
     jabatan_by_pk(id_jabatan: $id_jabatan) {
       id_jabatan
       nama_jabatan
+      bonus
+      pph
     }
   }
 `;
