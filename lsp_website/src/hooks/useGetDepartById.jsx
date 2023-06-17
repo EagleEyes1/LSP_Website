@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import GetDepartById from "../graphqls/GetDepartById";
 
 const useGetDepartById = (id_jabatan) => {
-  console.log(id_jabatan);
   const {
     data: idDepartData,
     loading: idDepartLoading,

@@ -3,8 +3,8 @@ import { gql } from "@apollo/client";
 const UpdateSalary = gql`
   mutation UpdateSalary(
     $id_gaji: String!
-    $gaji_pokok: Int
-    $gaji_akhir: Int
+    $gaji_pokok: Float
+    $gaji_akhir: Float
     $karyawan_id: String
     $tgl_gaji: date
   ) {

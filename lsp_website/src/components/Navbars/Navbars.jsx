@@ -22,6 +22,10 @@ function Navbars() {
     navigate("/jabatan");
   };
 
+  const toReport = () => {
+    navigate("/laporan");
+  };
+
   const userData = useSelector((state) => state.user.userData);
 
   const signOut = () => {
@@ -58,9 +62,9 @@ function Navbars() {
               <Nav.Link className={styles.linkhome} onClick={toDepart}>
                 Jabatan
               </Nav.Link>
-              <Nav.Link className={styles.linkhome} href="#">
+              {/* <Nav.Link className={styles.linkhome} onClick={toReport}>
                 Laporan
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
             <Button variant="outline-warning">About Us</Button>
             <NavDropdown

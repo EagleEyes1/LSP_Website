@@ -4,8 +4,8 @@ const InsertSalary = gql`
   mutation InsertSalary(
     $id_gaji: String
     $karyawan_id: String
-    $gaji_pokok: Int
-    $gaji_akhir: Int
+    $gaji_pokok: Float
+    $gaji_akhir: Float
     $tgl_gaji: date
   ) {
     insert_gaji(

@@ -9,9 +9,10 @@ const useGetDepartForSalary = (karyawan_id) => {
     error: departSalaryError,
   } = useQuery(GetDepartForSalary, {
     variables: {
-      karyawan_id,
+      id_karyawan: karyawan_id,
     },
   });
+  console.log(departSalaryData);
   return { departSalaryData, departSalaryLoading, departSalaryError };
 };
 

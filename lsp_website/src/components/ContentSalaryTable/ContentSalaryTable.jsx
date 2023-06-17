@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPenToSquare,
-  faTrash,
-  faMoneyBill,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
-import useGetSalary from "../../hooks/useGetSalary";
 import { useParams } from "react-router-dom";
 import useGetSalaryById from "../../hooks/useGetSalaryById";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from "react-bootstrap/Modal";
 import { v4 as uuidv4 } from "uuid";
 import useInsertSalary from "../../hooks/useInsertSalary";
-import useGetDepartById from "../../hooks/useGetDepartById";
 import useGetDepartForSalary from "../../hooks/useGetDepartForSalary";
 import useDeleteSalary from "../../hooks/useDeleteSalary";
 import Swal from "sweetalert2";
 import ModalEditSalary from "../ModalEditSalary/ModalEditSalary";
+import Moment from "moment";
+import Loading from "../../assets/loadingsvg/Loading";
 
 function ContentSalaryTable() {
   const [state, setState] = useState({
@@ -30,10 +26,8 @@ function ContentSalaryTable() {
     tgl_gaji: "",
   });
   const { id } = useParams();
-  //   console.log(id);
-  const { idSalaryData, idSalaryLoading, idSalaryError } = useGetSalaryById(id);
 
-  console.log(idSalaryData);
+  const { idSalaryData, idSalaryLoading, idSalaryError } = useGetSalaryById(id);
 
   // Ambil ID Edit
   const [currentID, setCurrentID] = useState("");
@@ -80,9 +74,9 @@ function ContentSalaryTable() {
   const { departSalaryData, departSalaryLoading, departSalaryError } =
     useGetDepartForSalary(id);
 
-  const { deleteSalaryLoading, deleteSalaryById } = useDeleteSalary();
-
   console.log(departSalaryData);
+
+  const { deleteSalaryLoading, deleteSalaryById } = useDeleteSalary();
 
   const addSalary = (newSalary) => {
     const newData = {
@@ -111,21 +105,25 @@ function ContentSalaryTable() {
 
   //   console.log(salaryData);
   const handleSubmit = (e) => {
+    console.log(state);
     e.preventDefault();
-    if (
-      state.id_gaji &&
-      state.karyawan_id &&
-      state.gaji_pokok &&
-      state.gaji_akhir &&
-      state.tgl_gaji
-    ) {
+    if (state.gaji_pokok && state.tgl_gaji) {
+      const gaji_bonus =
+        Number(state.gaji_pokok) *
+        Number(
+          departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus
+        );
+      const gaji_pph =
+        Number(state.gaji_pokok) *
+        Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
       const newData = {
         id_gaji: uuidv4(),
         karyawan_id: id,
         gaji_pokok: state.gaji_pokok,
-        gaji_akhir: state.gaji_akhir,
-        tgl_gaji: state.tgl_gaji,
+        gaji_akhir: Number(state.gaji_pokok) + gaji_bonus - gaji_pph,
+        tgl_gaji: Moment(state.tgl_gaji).format("YYYY-MM-DD"),
       };
+      //   console.log(newData);
       addSalary(newData);
       setState({
         id_gaji: "",
@@ -138,6 +136,14 @@ function ContentSalaryTable() {
       alert("Data Masih Ada Yang Belum Diisi");
     }
   };
+
+  if (insertSalaryLoading || departSalaryLoading) {
+    <Loading />;
+  }
+
+  if (insertSalaryError || departSalaryError) {
+    console.log(insertSalaryError || departSalaryError);
+  }
 
   return (
     <>
@@ -196,7 +202,12 @@ function ContentSalaryTable() {
       </div>
 
       {/* Modal Edit Gaji  */}
-      <ModalEditSalary id={currentID} setShow={setShow} show={show} />
+      <ModalEditSalary
+        id={currentID}
+        id_params={id}
+        setShow={setShow}
+        show={show}
+      />
 
       {/* Modal Tambahkan Gaji */}
       <Modal show={showAdd} onHide={handleCloseAdd} centered>
@@ -235,7 +246,7 @@ function ContentSalaryTable() {
           <Button variant="secondary" onClick={handleCloseAdd}>
             Tutup
           </Button>
-          <Button variant="primary" onClick={handleCloseAdd}>
+          <Button variant="primary" onClick={handleSubmit}>
             Tambahkan
           </Button>
         </Modal.Footer>

@@ -5,6 +5,7 @@ import Loading from "../../assets/loadingsvg/Loading";
 import Button from "react-bootstrap/Button";
 import useUpdateDepart from "../../hooks/useUpdateDepart";
 import useGetDepartById from "../../hooks/useGetDepartById";
+import Swal from "sweetalert2";
 
 function ModalEditDepart({ id, setShow, show }) {
   const [state, setState] = useState({
@@ -32,6 +33,7 @@ function ModalEditDepart({ id, setShow, show }) {
       },
     });
     handleClose();
+    Swal.fire("Berhasil!", "Data Berhasil Ditambahkan", "success");
   };
 
   const onChange = (e) => {
@@ -48,6 +50,14 @@ function ModalEditDepart({ id, setShow, show }) {
       pph: idDepartData?.jabatan_by_pk?.pph,
     });
   }, [id, idDepartData]);
+
+  if (idDepartLoading || updateDepartLoading) {
+    <Loading />;
+  }
+
+  if (idDepartError || updateDepartError) {
+    console.log(idDepartError || updateDepartError);
+  }
 
   return (
     <Modal show={show} onHide={handleClose} centered>

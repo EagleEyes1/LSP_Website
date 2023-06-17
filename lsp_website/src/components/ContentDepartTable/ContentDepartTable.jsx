@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import useInsertDepart from "../../hooks/useInsertDepart";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { NumericFormat } from "react-number-format";
+import Loading from "../../assets/loadingsvg/Loading";
 
 function ContentDepartTable() {
   const [state, setState] = useState({
@@ -21,8 +22,6 @@ function ContentDepartTable() {
   });
 
   const { departData, departLoading, departError } = useGetDepart();
-
-  console.log(departData);
 
   const { deleteDepartLoading, deleteDepartById } = useDeleteDepart();
 
@@ -42,8 +41,6 @@ function ContentDepartTable() {
   const handleShowAdd = () => {
     setShowAdd(!showAdd);
   };
-
-  console.log(state);
 
   // State Modal Delete
   const [showDelete, setShowDelete] = useState(false);
@@ -107,10 +104,19 @@ function ContentDepartTable() {
         bonus: 0,
         pph: 0,
       });
+      Swal.fire("Berhasil!", "Data Berhasil Ditambahkan", "success");
     } else {
       alert("Data Masih Ada Yang Belum Diisi");
     }
   };
+
+  if (deleteDepartLoading || departLoading || insertDepartLoading) {
+    <Loading />;
+  }
+
+  if (insertDepartError || departError) {
+    console.log(insertDepartError || departError);
+  }
 
   return (
     <>

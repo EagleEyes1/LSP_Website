@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import useGetEmployeeById from "../../hooks/useGetEmployeeById";
 import useUpdateEmployee from "../../hooks/useUpdateEmployee";
 import useGetDepart from "../../hooks/useGetDepart";
+import Swal from "sweetalert2";
 
 function ModalEditEmployee({ id, setShow, show }) {
   const handleClose = () => {
@@ -38,14 +39,20 @@ function ModalEditEmployee({ id, setShow, show }) {
       },
     });
     handleClose();
+    Swal.fire("Berhasil!", "Data Berhasil Diubah", "success");
   };
 
-  if (idEmployeeLoading || state.nama === undefined || updateEmployeeLoading) {
+  if (
+    idEmployeeLoading ||
+    state.nama === undefined ||
+    updateEmployeeLoading ||
+    departLoading
+  ) {
     <Loading />;
   }
 
-  if (idEmployeeError || updateEmployeeError) {
-    console.log(idEmployeeError);
+  if (idEmployeeError || updateEmployeeError || departError) {
+    console.log(idEmployeeError || updateEmployeeError || departError);
   }
 
   const onChange = (e) => {

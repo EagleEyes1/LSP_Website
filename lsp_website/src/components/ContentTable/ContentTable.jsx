@@ -18,7 +18,6 @@ import Modal from "react-bootstrap/Modal";
 import useDeleteEmployee from "../../hooks/useDeleteEmployee";
 import Swal from "sweetalert2";
 import { ToastContainer } from "react-toastify";
-import useInsertDepart from "../../hooks/useInsertDepart";
 import useGetDepart from "../../hooks/useGetDepart";
 
 function ContentTable() {
@@ -80,12 +79,17 @@ function ContentTable() {
     Swal.fire("Berhasil!", "Data Berhasil Dihapus", "success");
   };
 
-  if (employeeLoading) {
+  if (
+    employeeLoading ||
+    departLoading ||
+    deleteEmployeeLoading ||
+    insertEmployeeLoading
+  ) {
     <Loading />;
   }
 
-  if (employeeError) {
-    console.log(employeeError);
+  if (employeeError || departError || insertEmployeeError) {
+    console.log(employeeError || departError || insertEmployeeError);
   }
 
   const onChange = (e) => {
@@ -128,6 +132,7 @@ function ContentTable() {
         no_telp: "",
         jabatan: "",
       });
+      Swal.fire("Berhasil!", "Data Berhasil Ditambahkan", "success");
     } else {
       alert("Data Masih Ada Yang Belum Diisi");
     }
@@ -186,6 +191,7 @@ function ContentTable() {
                   </Button>{" "}
                   <Button
                     href={`/detailgaji/${item.id_karyawan}`}
+                    data={item.nama}
                     variant="warning"
                   >
                     <FontAwesomeIcon icon={faMoneyBill} />
