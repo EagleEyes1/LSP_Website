@@ -1,16 +1,16 @@
 import React from "react";
 import Navbars from "../components/Navbars/Navbars";
-import ContentTable from "../components/ContentTable/ContentTable";
+import ContentDepartTable from "../components/ContentDepartTable/ContentDepartTable";
 import Footer from "../components/Footer/Footer";
 
-function Home() {
+function DepartPage() {
   return (
     <>
       <Navbars />
-      <ContentTable />
+      <ContentDepartTable />
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default DepartPage;

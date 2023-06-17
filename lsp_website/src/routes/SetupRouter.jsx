@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 // import Favorites from "../pages/Favorites";
 import ProtectedRoute from "./ProtectedRoute";
 import HomeRoutes from "./HomeRoutes";
+import DepartPage from "../pages/DepartPage";
 
 const SetupRouter = () => {
   return (
@@ -16,6 +17,7 @@ const SetupRouter = () => {
         {/* Protected Route */}
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<Home />} />
+          <Route path="/jabatan" element={<DepartPage />} />
           {/* <Route path="/detailbuku/:id" element={<DetailBuku />} />
                     <Route path="/tambahbuku" element={<TambahBukus />} />
                     <Route path="/favorites" element={<Favorites />} /> */}

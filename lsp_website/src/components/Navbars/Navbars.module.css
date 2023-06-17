@@ -5,6 +5,7 @@
 }
 
 .icontext {
+    text-decoration: none;
     color:#edcb04;
     font-size: 30px;
     -webkit-text-stroke-width: 1px;
@@ -16,4 +17,13 @@
     font-size: 25px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #2c65b5;
+}
+
+.linkhome {
+    margin-left: 10%;
+    color: black;
+    text-decoration: none;
+}
+.linkhome:hover{
+    color:#6c757d;
 }

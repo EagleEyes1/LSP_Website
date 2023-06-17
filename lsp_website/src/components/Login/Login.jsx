@@ -12,9 +12,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../utils/Auth";
+import InputGroup from "react-bootstrap/InputGroup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [show, setShow] = useState(false);
+
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const { validateUser, userLoading, userError } = useGetUser();
 
@@ -48,6 +54,16 @@ const Login = () => {
         dispatch(signIn(query.data));
         Auth.storeUserInfoToCookie(query.data);
         navigate("/");
+        toast.success("Berhasil Login", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         handleShow();
       }
@@ -96,7 +112,8 @@ const Login = () => {
                 />
               </FloatingLabel>
             </Form.Group>
-            <Form.Group
+            <Form.Group></Form.Group>
+            <InputGroup
               style={{
                 marginBottom: "1%",
               }}
@@ -107,12 +124,18 @@ const Login = () => {
                   onChange={onChange}
                   name="password"
                   size="lg"
-                  type="password"
+                  type={passwordShown ? "text" : "password"}
                   placeholder="Password"
                   required
                 />
               </FloatingLabel>
-            </Form.Group>
+              <InputGroup.Text
+                onClick={() => setPasswordShown(!passwordShown)}
+                style={{ backgroundColor: "#ffffff", borderLeft: "0" }}
+              >
+                <FontAwesomeIcon icon={faEye} />
+              </InputGroup.Text>
+            </InputGroup>
             <Button
               style={{
                 marginBottom: "1%",
