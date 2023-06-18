@@ -39,13 +39,15 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
   const { departSalaryData, departSalaryLoading, departSalaryError } =
     useGetDepartForSalary(id_params);
 
-  console.log(departSalaryData);
+  // console.log(departSalaryData);
+
+  console.log(state);
 
   const gaji_bonus =
-    Number(eachData?.gaji_by_pk?.gaji_pokok) *
+    Number(state.gaji_pokok) *
     Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus);
   const gaji_pph =
-    Number(eachData?.gaji_by_pk?.gaji_pokok) *
+    Number(state.gaji_pokok) *
     Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
 
   const updateSalary = () => {
@@ -70,7 +72,6 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
     console.log(eachError);
   }
 
-  console.log(state);
   const onChange = (e) => {
     setState({
       ...state,

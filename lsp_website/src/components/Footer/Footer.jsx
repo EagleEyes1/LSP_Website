@@ -49,6 +49,7 @@ const Footer = () => {
                   {/* <!-- Links --> */}
                   <h6 class="text-uppercase contact fw-bold mb-4">Contact</h6>
                   <a
+                    href="/aboutus"
                     class="usbottom"
                     style={{ textDecoration: "none", color: "#6c757d" }}
                   >
@@ -74,7 +75,7 @@ const Footer = () => {
         >
           © 2023 Copyright:
           <a class="text-reset fw-bold" href="#">
-            Baroqah Inc.
+            Baroqah Tbk.
           </a>
         </div>
         {/* <!-- Copyright --> */}

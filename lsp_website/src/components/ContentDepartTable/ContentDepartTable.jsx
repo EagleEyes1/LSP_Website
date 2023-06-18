@@ -125,7 +125,7 @@ function ContentDepartTable() {
           class="row mb-5"
           style={{ justifyContent: "center", fontSize: "50px" }}
         >
-          Karyawan PT. Baroqah
+          Jabatan PT. Baroqah
         </div>
         <Button
           variant="success"

@@ -66,7 +66,9 @@ function Navbars() {
                 Laporan
               </Nav.Link>
             </Nav>
-            <Button variant="outline-warning">About Us</Button>
+            <Button href="/aboutus" variant="outline-warning">
+              About Us
+            </Button>
             <NavDropdown
               style={{ marginLeft: "2%" }}
               title={`Masuk Sebagai ${userData.user[0]?.display_name}`}
