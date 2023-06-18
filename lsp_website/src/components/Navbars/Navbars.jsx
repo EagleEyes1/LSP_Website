@@ -50,7 +50,7 @@ function Navbars() {
                 padding: "13px",
               }}
             />
-            Baroqah Inc.
+            Baroqah Tbk.
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -62,9 +62,9 @@ function Navbars() {
               <Nav.Link className={styles.linkhome} onClick={toDepart}>
                 Jabatan
               </Nav.Link>
-              {/* <Nav.Link className={styles.linkhome} onClick={toReport}>
+              <Nav.Link className={styles.linkhome} onClick={toReport}>
                 Laporan
-              </Nav.Link> */}
+              </Nav.Link>
             </Nav>
             <Button variant="outline-warning">About Us</Button>
             <NavDropdown

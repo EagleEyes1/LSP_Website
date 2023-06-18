@@ -176,8 +176,8 @@ function ContentSalaryTable() {
             {idSalaryData?.gaji.map((item, index) => (
               <tr key={item.id_gaji}>
                 <td>{index + 1}</td>
-                <td>{item.gaji_pokok}</td>
-                <td>{item.gaji_akhir}</td>
+                <td>Rp. {item.gaji_pokok.toLocaleString(["id"])}</td>
+                <td>Rp. {item.gaji_akhir.toLocaleString(["id"])}</td>
                 <td>{item.tgl_gaji}</td>
                 <td style={{ textAlign: "center" }}>
                   <Button
@@ -217,7 +217,7 @@ function ContentSalaryTable() {
         <Modal.Body>
           <FloatingLabel
             controlId="floatingInputNama"
-            label="Gaji Pokok"
+            label="Gaji Pokok (Rp.)"
             className="mb-3"
           >
             <Form.Control

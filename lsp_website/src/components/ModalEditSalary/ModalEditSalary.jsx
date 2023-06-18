@@ -41,6 +41,13 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
 
   console.log(departSalaryData);
 
+  const gaji_bonus =
+    Number(eachData?.gaji_by_pk?.gaji_pokok) *
+    Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus);
+  const gaji_pph =
+    Number(eachData?.gaji_by_pk?.gaji_pokok) *
+    Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
+
   const updateSalary = () => {
     console.log(state);
     updateNewSalary({
@@ -48,7 +55,7 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
         id_gaji: id,
         karyawan_id: state.karyawan_id,
         gaji_pokok: state.gaji_pokok,
-        gaji_akhir: state.gaji_akhir,
+        gaji_akhir: Number(state.gaji_pokok) + gaji_bonus - gaji_pph,
         tgl_gaji: state.tgl_gaji,
       },
     });
@@ -72,17 +79,10 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
   };
 
   useEffect(() => {
-    const gaji_bonus =
-      Number(state.gaji_pokok) *
-      Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus);
-    const gaji_pph =
-      Number(state.gaji_pokok) *
-      Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
     setState({
       karyawan_id: eachData?.gaji_by_pk?.karyawan_id,
       gaji_pokok: eachData?.gaji_by_pk?.gaji_pokok,
-      gaji_akhir:
-        Number(eachData?.gaji_by_pk?.gaji_pokok) + gaji_bonus - gaji_pph,
+      gaji_akhir: eachData?.gaji_by_pk?.gaji_akhir,
       tgl_gaji: eachData?.gaji_by_pk?.tgl_gaji,
     });
   }, [id, eachData]);

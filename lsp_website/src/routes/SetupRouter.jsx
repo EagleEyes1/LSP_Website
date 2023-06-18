@@ -21,7 +21,7 @@ const SetupRouter = () => {
           <Route index element={<Home />} />
           <Route path="/jabatan" element={<DepartPage />} />
           <Route path="/detailgaji/:id" element={<SalaryPage />} />
-          {/* <Route path="/laporan" element={<Report />} /> */}
+          <Route path="/laporan" element={<Report />} />
           {/* <Route path="/detailbuku/:id" element={<DetailBuku />} />
                     <Route path="/tambahbuku" element={<TambahBukus />} />
                     <Route path="/favorites" element={<Favorites />} /> */}

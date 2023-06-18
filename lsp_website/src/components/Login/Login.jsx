@@ -78,7 +78,7 @@ const Login = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <Container style={{ marginTop: "6%" }}>
+    <Container style={{ marginTop: "6%", marginBottom: "10%" }}>
       <Row className={styles.barislogin}>
         <Col xs={5} className={styles.colsatu}></Col>
         <Col xs={5} className={styles.formlogin}>

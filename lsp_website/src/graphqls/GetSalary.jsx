@@ -6,10 +6,12 @@ const GetSalary = gql`
       id_gaji
       karyawan_id
       gaji_pokok
-      bonus
-      pph
       gaji_akhir
       tgl_gaji
+      gaji_karyawan {
+        nama
+        jabatan
+      }
     }
   }
 `;

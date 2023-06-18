@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <footer
         class="text-center justify-content-center align-items-center text-lg-start bg-light text-muted mt-auto"
-        style={{ bottom: "0", width: "100%", position: "absolute" }}
+        style={{ bottom: "0", width: "100%", position: "relative" }}
       >
         {/* Section: Links */}
         <section class="border-top pt-2 pb-4">
@@ -30,7 +30,7 @@ const Footer = () => {
                         }}
                       />
                       <a className={styles.navbarBrand} href="#">
-                        Baroqah Inc.
+                        Baroqah Tbk.
                       </a>
                     </div>
                   </h6>
