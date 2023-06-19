@@ -111,7 +111,7 @@ function ContentDepartTable() {
   };
 
   if (deleteDepartLoading || departLoading || insertDepartLoading) {
-    <Loading />;
+    return <Loading />;
   }
 
   if (insertDepartError || departError) {

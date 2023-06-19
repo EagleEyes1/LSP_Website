@@ -85,7 +85,7 @@ function ContentTable() {
     deleteEmployeeLoading ||
     insertEmployeeLoading
   ) {
-    <Loading />;
+    return <Loading />;
   }
 
   if (employeeError || departError || insertEmployeeError) {

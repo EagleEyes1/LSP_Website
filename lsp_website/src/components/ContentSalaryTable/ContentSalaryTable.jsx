@@ -138,7 +138,7 @@ function ContentSalaryTable() {
   };
 
   if (insertSalaryLoading || departSalaryLoading) {
-    <Loading />;
+    return <Loading />;
   }
 
   if (insertSalaryError || departSalaryError) {
