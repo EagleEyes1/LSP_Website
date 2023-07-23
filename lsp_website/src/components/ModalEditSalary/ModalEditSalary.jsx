@@ -7,9 +7,7 @@ import useGetEachSalary from "../../hooks/useGetEachSalary";
 import useUpdateSalary from "../../hooks/useUpdateSalary";
 import { useParams } from "react-router-dom";
 import useGetDepartForSalary from "../../hooks/useGetDepartForSalary";
-// import useGetEmployeeById from "../../hooks/useGetEmployeeById";
-// import useUpdateEmployee from "../../hooks/useUpdateEmployee";
-// import useGetDepart from "../../hooks/useGetDepart";
+import Swal from "sweetalert2";
 
 function ModalEditSalary({ id, id_params, setShow, show }) {
   const handleClose = () => {
