@@ -33,7 +33,7 @@ function ModalEditDepart({ id, setShow, show }) {
       },
     });
     handleClose();
-    Swal.fire("Berhasil!", "Data Berhasil Ditambahkan", "success");
+    Swal.fire("Berhasil!", "Data Berhasil Diubah", "success");
   };
 
   const onChange = (e) => {

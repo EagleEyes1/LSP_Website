@@ -16,13 +16,7 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
     setShow(!show);
   };
 
-  // const { idx } = useParams();
-  // console.log(idx);
-  //   console.log(id);
-
   const { eachData, eachLoading, eachError } = useGetEachSalary(id);
-
-  console.log(eachData);
 
   const [state, setState] = useState({
     id_gaji: "",
@@ -39,17 +33,12 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
   const { departSalaryData, departSalaryLoading, departSalaryError } =
     useGetDepartForSalary(id_params);
 
-  // console.log(departSalaryData);
-
-  console.log(state);
-
   const gaji_bonus =
     Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.bonus);
   const gaji_pph =
     Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.pph);
 
   const updateSalary = () => {
-    console.log(state);
     updateNewSalary({
       variables: {
         id_gaji: id,
@@ -60,6 +49,7 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
       },
     });
     handleClose();
+    Swal.fire("Berhasil!", "Data Berhasil Diubah", "success");
   };
 
   if (eachLoading || state.nama === undefined || updateSalaryLoading) {

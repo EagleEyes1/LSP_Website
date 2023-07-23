@@ -91,7 +91,6 @@ function ContentDepartTable() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
     if (state.nama_jabatan) {
       const newData = {
         nama_jabatan: state.nama_jabatan,

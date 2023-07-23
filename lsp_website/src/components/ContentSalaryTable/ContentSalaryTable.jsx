@@ -29,8 +29,6 @@ function ContentSalaryTable() {
 
   const { idSalaryData, idSalaryLoading, idSalaryError } = useGetSalaryById(id);
 
-  console.log(idSalaryData);
-
   // Ambil ID Edit
   const [currentID, setCurrentID] = useState("");
 
@@ -42,7 +40,6 @@ function ContentSalaryTable() {
 
   const handleShow = (e, id) => {
     setShow(true);
-    // console.log(id);
     setCurrentID(id);
   };
 
@@ -76,8 +73,6 @@ function ContentSalaryTable() {
   const { departSalaryData, departSalaryLoading, departSalaryError } =
     useGetDepartForSalary(id);
 
-  console.log(departSalaryData);
-
   const { deleteSalaryLoading, deleteSalaryById } = useDeleteSalary();
 
   const addSalary = (newSalary) => {
@@ -105,17 +100,13 @@ function ContentSalaryTable() {
     Swal.fire("Berhasil!", "Data Berhasil Dihapus", "success");
   };
 
-  //   console.log(salaryData);
   const handleSubmit = (e) => {
-    console.log(state);
     e.preventDefault();
     if (state.gaji_pokok && state.tgl_gaji) {
       const gaji_bonus =
         Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.bonus);
       const gaji_pph =
         Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.pph);
-      // console.log(gaji_bonus);
-      // console.log(gaji_pph);
       const newData = {
         id_gaji: uuidv4(),
         karyawan_id: id,
@@ -123,7 +114,6 @@ function ContentSalaryTable() {
         gaji_akhir: Number(state.gaji_pokok) + gaji_bonus - gaji_pph,
         tgl_gaji: Moment(state.tgl_gaji).format("YYYY-MM-DD"),
       };
-      //   console.log(newData);
       addSalary(newData);
       setState({
         id_gaji: "",
@@ -132,6 +122,7 @@ function ContentSalaryTable() {
         gaji_akhir: 0,
         tgl_gaji: "",
       });
+      Swal.fire("Berhasil!", "Data Berhasil Ditambahkan", "success");
     } else {
       alert("Data Masih Ada Yang Belum Diisi");
     }
