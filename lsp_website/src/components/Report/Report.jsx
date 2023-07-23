@@ -11,6 +11,15 @@ function Report() {
     pdfExportComponent.current.save();
   };
   const { salaryData, salaryLoading, salaryError } = useGetSalary();
+
+  let totalGaji = 0;
+  if (salaryData?.gaji) {
+    totalGaji = salaryData.gaji.reduce(
+      (total, item) => total + item.gaji_akhir,
+      0
+    );
+  }
+
   return (
     <>
       <Container>
@@ -45,6 +54,9 @@ function Report() {
               ))}
             </tbody>
           </Table>
+          <div style={{ textAlign: "right" }}>
+            <strong>Total Gaji: {totalGaji}</strong>
+          </div>
         </PDFExport>
       </Container>
     </>

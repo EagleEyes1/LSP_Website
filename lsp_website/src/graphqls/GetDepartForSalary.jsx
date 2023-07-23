@@ -1,15 +1,15 @@
 import { gql } from "@apollo/client";
 
 const GetDepartForSalary = gql`
-  query GetDepartForSalary($id_karyawan: String) {
-    gaji(where: { karyawan_id: { _eq: $id_karyawan } }) {
-      gaji_karyawan {
-        karyawan_jabatan {
-          id_jabatan
-          nama_jabatan
-          bonus
-          pph
-        }
+  query GetDepartForSalary($karyawan_id: String) {
+    jabatan(
+      where: { jabatan_karyawans: { id_karyawan: { _eq: $karyawan_id } } }
+    ) {
+      nama_jabatan
+      bonus
+      pph
+      jabatan_karyawans {
+        nama
       }
     }
   }

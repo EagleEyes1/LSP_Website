@@ -29,6 +29,8 @@ function ContentSalaryTable() {
 
   const { idSalaryData, idSalaryLoading, idSalaryError } = useGetSalaryById(id);
 
+  console.log(idSalaryData);
+
   // Ambil ID Edit
   const [currentID, setCurrentID] = useState("");
 
@@ -109,13 +111,11 @@ function ContentSalaryTable() {
     e.preventDefault();
     if (state.gaji_pokok && state.tgl_gaji) {
       const gaji_bonus =
-        Number(state.gaji_pokok) *
-        Number(
-          departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus
-        );
+        Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.bonus);
       const gaji_pph =
-        Number(state.gaji_pokok) *
-        Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
+        Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.pph);
+      // console.log(gaji_bonus);
+      // console.log(gaji_pph);
       const newData = {
         id_gaji: uuidv4(),
         karyawan_id: id,
@@ -137,7 +137,7 @@ function ContentSalaryTable() {
     }
   };
 
-  if (insertSalaryLoading || departSalaryLoading) {
+  if (insertSalaryLoading || departSalaryLoading || idSalaryLoading) {
     return <Loading />;
   }
 
@@ -152,7 +152,7 @@ function ContentSalaryTable() {
           class="row mb-5"
           style={{ justifyContent: "center", fontSize: "50px" }}
         >
-          Daftar Gaji {idSalaryData?.gaji[0]?.gaji_karyawan?.nama}
+          Daftar Gaji {departSalaryData?.jabatan[0]?.jabatan_karyawans[0]?.nama}
         </div>
         <Button
           variant="success"

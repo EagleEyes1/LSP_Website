@@ -44,11 +44,9 @@ function ModalEditSalary({ id, id_params, setShow, show }) {
   console.log(state);
 
   const gaji_bonus =
-    Number(state.gaji_pokok) *
-    Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.bonus);
+    Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.bonus);
   const gaji_pph =
-    Number(state.gaji_pokok) *
-    Number(departSalaryData?.gaji[0]?.gaji_karyawan?.karyawan_jabatan?.pph);
+    Number(state.gaji_pokok) * Number(departSalaryData?.jabatan[0]?.pph);
 
   const updateSalary = () => {
     console.log(state);
