@@ -140,7 +140,7 @@ function ContentTable() {
 
   return (
     <>
-      <div class="container mt-5 mb-5 content">
+      <div class="container mt-5 mb-5 content" style={{ minHeight: "57vh" }}>
         <div
           class="row mb-5"
           style={{ justifyContent: "center", fontSize: "50px" }}

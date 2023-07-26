@@ -12,6 +12,11 @@ function Report() {
   };
   const { salaryData, salaryLoading, salaryError } = useGetSalary();
 
+  // Sort salaryData by "tgl_gaji" property in ascending order (earliest to latest)
+  const sortedSalaryData = salaryData?.gaji.sort((a, b) => {
+    return new Date(a.tgl_gaji) - new Date(b.tgl_gaji);
+  });
+
   let totalGaji = 0;
   if (salaryData?.gaji) {
     totalGaji = salaryData.gaji.reduce(
@@ -43,7 +48,7 @@ function Report() {
               </tr>
             </thead>
             <tbody>
-              {salaryData?.gaji.map((item, index) => (
+              {sortedSalaryData?.map((item, index) => (
                 <tr key={item.id_gaji}>
                   <td>{index + 1}</td>
                   <td>{item?.gaji_karyawan?.nama}</td>
